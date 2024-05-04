@@ -1,0 +1,36 @@
+
+
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title  size="large">Cars</ion-title>
+    </ion-toolbar> 
+  </ion-header>
+
+  <ion-item style="margin-top: 1rem; margin-bottom: 1rem;" class="add-car"  routerDirection="root" routerLink="/translator" lines="none" detail="false" routerLinkActive="selected">
+    <ion-icon style="margin-right: .5rem;" name="add-circle-outline"></ion-icon>
+    <!-- <ion-label (click)="addCar()">Add Car</ion-label> -->
+      <ion-label>Add Car</ion-label>
+  </ion-item>
+  
+  <!-- Lista de autos -->
+  <ion-list >
+    <ion-item >
+      <ion-label  style="font-size: large;">Client</ion-label>
+      <ion-label  style="font-size: large;">Phone </ion-label>
+      <ion-label  style="font-size: large;">Vehicle</ion-label>
+      <!-- Mostrar más detalles del cliente según sea necesario -->
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="clients.length !== 0">
+    <ion-item [routerLink]="['/detail', client.id]" routerLinkActive="router-link-active"  *ngFor="let client of clients">
+      <ion-label>{{ client.name }}</ion-label>
+      <ion-label>{{ client.phone }}</ion-label>
+      <ion-label>{{ client.carPlate }}</ion-label>
+      <!-- Mostrar más detalles del cliente según sea necesario -->
+    </ion-item>
+  </ion-list>
+</ion-content>

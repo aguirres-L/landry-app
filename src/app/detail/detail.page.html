@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Client Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-icon class="back" [routerLink]="['/autos']" routerLinkActive="router-link-active"  name="return-up-back-outline"></ion-icon>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ client.name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="info-client">
+      <ion-label>Phone: {{ client.phone }}</ion-label>
+      <ion-label> Vehicle: {{ client.carPlate }}</ion-label>
+      
+        <!-- Lista de servicios de lavado -->
+        <ion-item *ngFor="let servicio of client.servicioLavado">
+          <ion-label>  {{ servicio.name }}</ion-label>
+          <ion-label> Price: {{ servicio.price | currency:'USD':'symbol':'1.2-2' }}</ion-label>
+        </ion-item>
+      
+      <!-- Otros detalles del cliente -->
+      <ion-item>
+        <ion-label>Monto Total:</ion-label>
+        <ion-label>{{ getTotal() | currency:'USD':'symbol':'1.2-2' }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-button expand="block" (click)="callClient()">Call Client <ion-icon slot="end" name="call-outline"></ion-icon> </ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteClient()">Delete Client <ion-icon slot="end" name="trash-outline"></ion-icon> </ion-button>
+  <ion-button expand="block" style="margin-top: 2rem;" (click)="paymentTransfer()" > My Wallet <ion-icon slot="end" name="wallet-outline"></ion-icon></ion-button>
+</ion-content>

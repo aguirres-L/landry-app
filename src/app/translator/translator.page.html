@@ -1,0 +1,43 @@
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title  style="font-size: large;">Client Information</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #clientForm="ngForm" (ngSubmit)="submitForm()">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" required [(ngModel)]="newClient.name" name="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Phone</ion-label>
+            <ion-input type="tel" required [(ngModel)]="newClient.phone" name="phone"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Vehicle</ion-label>
+            <ion-input type="text" required [(ngModel)]="newClient.carPlate" name="carPlate"></ion-input>
+          </ion-item>
+        </ion-list>
+        
+        <div style="margin-top: 1rem; margin-bottom: .5rem;">
+          <ion-label style="font-size: large;">Services</ion-label>
+          <ion-item *ngFor="let service of servicesCars">
+            <ion-checkbox slot="start" (ionChange)="toggleService(service.name)" [checked]="isServiceSelected(service.name)"></ion-checkbox>
+            <ion-label>{{ service.name }}</ion-label>
+          </ion-item>
+        </div>
+  
+        <ion-button expand="block " routerLink="/autos" type="submit" (click)="submitForm()" [disabled]="!clientForm.valid">Add Client</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+
+<!-- 
+<ion-button expand="full" routerLink="/autos" type="submit" [disabled]="!submitForm.valid" (click)="submitForm()">Add Client</ion-button> -->
