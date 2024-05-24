@@ -6,22 +6,23 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title  size="large">Cars</ion-title>
+      <ion-title  size="large">{{stringAutoHTML.header}}</ion-title>
     </ion-toolbar> 
   </ion-header>
+  
 
   <ion-item style="margin-top: 1rem; margin-bottom: 1rem;" class="add-car"  routerDirection="root" routerLink="/translator" lines="none" detail="false" routerLinkActive="selected">
     <ion-icon style="margin-right: .5rem;" name="add-circle-outline"></ion-icon>
     <!-- <ion-label (click)="addCar()">Add Car</ion-label> -->
-      <ion-label>Add Car</ion-label>
+      <ion-label>{{stringAutoHTML.addButton}}</ion-label>
   </ion-item>
   
   <!-- Lista de autos -->
   <ion-list >
     <ion-item >
-      <ion-label  style="font-size: large;">Client</ion-label>
-      <ion-label  style="font-size: large;">Phone </ion-label>
-      <ion-label  style="font-size: large;">Vehicle</ion-label>
+      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.clients}} </ion-label>
+      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.phone}} </ion-label>
+      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.vehicle}} </ion-label>
       <!-- Mostrar más detalles del cliente según sea necesario -->
     </ion-item>
   </ion-list>
@@ -34,3 +35,4 @@
     </ion-item>
   </ion-list>
 </ion-content>
+  

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="login-content">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button *ngIf="!isLoading" expand="full" type="submit" [disabled]="!loginForm.valid">Login</ion-button>
+    
+    
+  <div *ngIf="isLoading"  class="spinner">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  </form>
+
+</ion-content>

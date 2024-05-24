@@ -1,6 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { detailEn } from 'src/utils/constants/languages/en/detail';
+import { detailEs } from 'src/utils/constants/languages/es/detail';
 
 @Component({
   selector: 'app-detail',
@@ -12,10 +14,15 @@ export class DetailPage implements OnInit {
   client: any;
   servicesCars: any[] =[];
   aliasCvuStorage!:string;
-
+  
+  
+languageStore!: string;
+  stringDetailHTML: any;
+  
   constructor(
     private route: ActivatedRoute,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -37,6 +44,7 @@ export class DetailPage implements OnInit {
   
     this.getLocalServicesCars();
     this.getAliasStorage()  
+    this.getLanguage()
   }
   getTotal(): number {
     return this.client.servicioLavado.reduce((acc:any, servicio:any) => acc + servicio.price, 0);
@@ -162,5 +170,21 @@ export class DetailPage implements OnInit {
     });
 
     await alert.present();
+  }
+  
+  
+   getLanguage(){
+    const storeLanguage = localStorage.getItem('language');
+    if (storeLanguage) this.languageStore = storeLanguage
+    this.updateLanguageContent();
+
+    console.log(this.languageStore, 'languageStore');
+    console.log(this.stringDetailHTML.clientsList,'stringDetailHTML');
+    
+  }
+  updateLanguageContent() {
+    this.stringDetailHTML = (this.languageStore === 'es') ? detailEs : detailEn;
+    this.cdr.detectChanges();  // Forzar la detección de cambios para actualizar la vista
+    console.log(this.stringDetailHTML, 'stringDetailHTML');
   }
 }

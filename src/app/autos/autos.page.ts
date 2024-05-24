@@ -1,6 +1,6 @@
-import { Component,OnInit,  } from '@angular/core';
-
-
+import { ChangeDetectorRef, Component,OnInit,  } from '@angular/core';
+import { carsEn } from 'src/utils/constants/languages/en/autos';
+import { carsEs } from 'src/utils/constants/languages/es/autos';
 
 @Component({
   selector: 'app-autos',
@@ -11,11 +11,17 @@ export class AutosPage implements OnInit {
   cars: { brand: string, model: string }[] = [];
   clients: any[] = [];
   servicesCars: any[] =[];
-  constructor() { }
+  
+  languageStore!: string;
+  stringAutoHTML: any;
+
+
+  constructor(private cdr: ChangeDetectorRef) { } 
 
   async ngOnInit() {
     this.getLocalClients()
     this.getLocalServicesCars()
+    this.getLanguage()
     
   }
 
@@ -41,7 +47,20 @@ export class AutosPage implements OnInit {
 
     this.cars.push({ brand: 'Marca', model: 'Modelo' });
   }
+  
+  getLanguage(){
+    const storeLanguage = localStorage.getItem('language');
+    if (storeLanguage) this.languageStore = storeLanguage
+    this.updateLanguageContent();
 
- 
+    console.log(this.languageStore, 'languageStore');
+    console.log(this.stringAutoHTML.clientsList.clients,'stringAutoHTML');
+    
+  }
+  updateLanguageContent() {
+    this.stringAutoHTML = (this.languageStore === 'es') ? carsEs : carsEn;
+    this.cdr.detectChanges();  // Forzar la detección de cambios para actualizar la vista
+    console.log(this.stringAutoHTML, 'stringAutoHTML');
+  }
   
 }

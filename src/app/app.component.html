@@ -1,29 +1,38 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane contentId="main-content" *ngIf="showMenu">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header> Laundry </ion-list-header>
+          <ion-list-header> Laundry  <img [src]="urlImgLogo" alt="Logo" style="width: 50px; height: auto; margin-left: 15px;"></ion-list-header>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-menu-toggle  auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item style="margin-top: 1rem;" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <ion-label >{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          
+          <ion-segment (ionChange)="changeLanguage($event.detail.value+'')" value="{{selectedLanguage}}" style="margin-top: 2rem;">
+            <ion-segment-button value="en">
+              <ion-label>English</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="es">
+              <ion-label>Español</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          
+          <ion-item button (click)="logoutFomApp()" style="margin-top: 2rem;" lines="none">
+            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            <ion-label>Cerrar sesión</ion-label>
+          </ion-item>
+          
         </ion-list>
 
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+  
+  <!-- Mostrar el contenido principal siempre -->
+  <ion-router-outlet id="main-content" *ngIf="!showMenu"></ion-router-outlet>
 </ion-app>
-
-
-<!-- 
-
-
-<video #video autoplay playsinline muted></video>
-<canvas #canvas></canvas>
-
--->

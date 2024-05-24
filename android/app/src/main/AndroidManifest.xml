@@ -34,7 +34,11 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
-npx cap add android
+
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />

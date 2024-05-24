@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title size="large">
-     Price
+     {{stringPriceHTML.header}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,19 +13,19 @@
 
   <ion-list style="margin-top: .5rem;"  lines="full">
     <ion-item>
-      <ion-label position="stacked">Servicio</ion-label>
+      <ion-label position="stacked">{{stringPriceHTML.service}}</ion-label>
       <ion-input type="text" [(ngModel)]="newService"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Precio</ion-label>
+      <ion-label position="stacked">{{stringPriceHTML.price}}</ion-label>
       <ion-input type="number" [(ngModel)]="newPrice"></ion-input>
     </ion-item>
-    <ion-button expand="block" (click)="addService()">Agregar Servicio</ion-button>
+    <ion-button expand="block" (click)="addService()">{{stringPriceHTML.addService}}</ion-button>
   </ion-list>
 
   <ion-list style="margin-top: 1rem;" *ngIf="services.length > 0">
     <ion-list-header  style="font-size: large;">
-      Servicios Guardados
+      {{stringPriceHTML.saveServices}}
     </ion-list-header>
     <ion-item *ngFor="let service of services; let i = index">
       <ion-label>{{ service.name }}</ion-label>
