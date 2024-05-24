@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { newCarEn } from 'src/utils/constants/languages/en/newCar';
+import { newCarEs } from 'src/utils/constants/languages/es/newCar';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -23,10 +25,17 @@ export class TranslatorPage implements OnInit {
     // Agrega más campos para otros servicios según sea necesario
   };
   servicesCars: any[] = [];
+  
+    languageStore!: string;
+   stringNewCarHTML: any;
+  constructor(private cdr: ChangeDetectorRef) { } 
+
 
   ngOnInit() {
     // Llamamos a la función para cargar los servicios al inicializar el componente
     this.getLocalServicesCars();
+    this.getLanguage()
+    
   }
 
   getLocalServicesCars() {
@@ -79,5 +88,22 @@ export class TranslatorPage implements OnInit {
       'servicioLavado': [], // Reiniciamos el array de servicios
       // Agrega más campos para otros servicios según sea necesario
     };
+  }
+  
+  
+  
+    getLanguage(){
+    const storeLanguage = localStorage.getItem('language');
+    if (storeLanguage) this.languageStore = storeLanguage
+    this.updateLanguageContent();
+
+    console.log(this.languageStore, 'languageStore');
+    console.log(this.stringNewCarHTML.clientsList,'stringNewCarHTML');
+    
+  }
+  updateLanguageContent() {
+    this.stringNewCarHTML = (this.languageStore === 'es') ? newCarEs : newCarEn;
+    this.cdr.detectChanges();  // Forzar la detección de cambios para actualizar la vista
+    console.log(this.stringNewCarHTML, 'stringNewCarHTML');
   }
 }

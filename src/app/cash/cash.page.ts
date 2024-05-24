@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { priceEn } from 'src/utils/constants/languages/en/price';
+import { priceEs } from 'src/utils/constants/languages/es/price';
 
 interface Service {
   id: string;  // Asumimos que agregamos un identificador único
@@ -17,9 +19,12 @@ export class CashPage implements OnInit {
   newPrice!: number | null;
   services: Service[] = [];
   
+    languageStore!: string;
+   stringPriceHTML: any;
+
 
   
-  constructor(private alertController: AlertController) {}
+  constructor(private alertController: AlertController,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     const storedServices = localStorage.getItem('services');
@@ -27,6 +32,7 @@ export class CashPage implements OnInit {
       this.services = JSON.parse(storedServices);
     }
     //console.log(this.services,'this.services');
+    this.getLanguage()
     
   }
 
@@ -113,5 +119,22 @@ export class CashPage implements OnInit {
     });
 
     await alert.present();
+  }
+  
+  
+  
+      getLanguage(){
+    const storeLanguage = localStorage.getItem('language');
+    if (storeLanguage) this.languageStore = storeLanguage
+    this.updateLanguageContent();
+
+    console.log(this.languageStore, 'languageStore');
+    console.log(this.stringPriceHTML,'stringPriceHTML');
+    
+  }
+  updateLanguageContent() {
+    this.stringPriceHTML = (this.languageStore === 'es') ? priceEs : priceEn;
+    this.cdr.detectChanges();  // Forzar la detección de cambios para actualizar la vista
+    console.log(this.stringPriceHTML, 'stringPriceHTML');
   }
 }

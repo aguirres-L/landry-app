@@ -1,21 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Welcome to Laundry App</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <div class="container">
-    <ion-list-header>
-      Welcome to Laundry App!
-    </ion-list-header>
-    <ion-note>
-      Laundry App is a convenient tool designed to help car wash owners manage appointments and communicate with car owners effectively.
-      With the increasing demand for car washing services and the need for streamlined communication, Laundry App provides a comprehensive solution for scheduling appointments and facilitating communication between car wash owners and customers.
-      Our app not only allows you to schedule appointments efficiently, but also helps you keep track of services, payments, and customer information, ensuring a seamless experience for both car wash owners and customers.
-    </ion-note>
-  </div>
-</ion-content>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{ stringFolderHTML.header }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+    <div class="container">
+      <ion-note style="font-size: larger;" *ngIf="showNote">
+        <ion-button class="btnX" *ngIf="showNote" (click)="toggleNoteVisibility()" expand="block">X</ion-button>
+        {{ stringFolderHTML.descriptionApp }}
+      </ion-note>
+    </div>
+  </ion-content>
