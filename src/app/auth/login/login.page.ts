@@ -96,13 +96,12 @@ export class LoginPage implements OnInit {
    }
  
    async onLogin() {
+     this.isLoading = true;
      if (this.loginForm.valid) {
-      this.isLoading = true;
        const { username, password } = this.loginForm.value;
  
        // Validar el usuario en Firestore
        this.userLaundryService.validateUser(username, password).subscribe(async (isValidUser) => {
-        this.isLoading = false;
          if (isValidUser) {
          
          console.log(isValidUser, 'isValidUser');
@@ -111,6 +110,7 @@ export class LoginPage implements OnInit {
            console.log(loginSuccessful,'loginSuccessful'); */
            
            if (isValidUser) {
+        this.isLoading = false;
            
              this.navCtrl.navigateForward('/folder/Inbox');
            } else {

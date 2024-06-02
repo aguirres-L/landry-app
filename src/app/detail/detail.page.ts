@@ -159,7 +159,7 @@ languageStore!: string;
             
           
             const message = encodeURIComponent(
-              'Hola este es mi Alias '+this.aliasCvuStorage+' Monto : $ '+ this.getTotal()
+              'Alias: '+this.aliasCvuStorage+'  Monto : $ '+ this.getTotal()
             );
             window.open(
               'https://wa.me/' + this.client.phone + '?text=' + message
