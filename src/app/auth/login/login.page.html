@@ -16,7 +16,7 @@
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button *ngIf="!isLoading" expand="full" type="submit" [disabled]="!loginForm.valid">Login</ion-button>
+    <ion-button *ngIf="!isLoading && !msjErrorUser" expand="full" type="submit" [disabled]="!loginForm.valid">Login</ion-button>
     
     
   <div *ngIf="isLoading"  class="spinner">
@@ -29,6 +29,12 @@
     <span></span>
     <span></span>
   </div>
+  
+  <div *ngIf="msjErrorUser" class="error-message">
+    Error de inicio de sesion. Por favor verifique su nombre de usuario y contraseña e inténtelo nuevamente.
+    </div>
+  
+  
   </form>
 
 </ion-content>

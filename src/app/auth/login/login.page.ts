@@ -1,59 +1,4 @@
-/* import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
-import { AuthService } from '../../../services/auth.service';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-})
-export class LoginPage implements OnInit {
-  loginForm!: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private navCtrl: NavController,
-    private authService: AuthService
-  ) {}
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-    
-    document.addEventListener('pause', this.onAppPause.bind(this));
-  }
-
-  ngOnDestroy() {
-    // Eliminar el listener cuando la página se destruye para evitar fugas de memoria
-    document.removeEventListener('pause', this.onAppPause.bind(this));
-  }
-
-
-  onLogin() {
-    if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
-      const password = this.loginForm.value.password;
-      
-      // Usar AuthService para validar el usuario
-      if (this.authService.login(username, password)) {
-        console.log('Login successful');
-        this.navCtrl.navigateForward('/folder/Inbox'); // Navegar a una página protegida después del login exitoso
-      } else {
-        console.log('Login failed');
-      }
-    }
-  }
-
-  onAppPause() {
-    // Limpiar la sesión cuando la aplicación se pausa (cierra)
-    localStorage.removeItem('authenticatedUser');
-  }
-}
- */
- 
  
  
  // src/app/pages/login/login.page.ts
@@ -74,6 +19,7 @@ export class LoginPage implements OnInit {
    loginForm!: FormGroup;
  
    isLoading = false;
+   msjErrorUser = false;
    
    constructor(
      private formBuilder: FormBuilder,
@@ -97,6 +43,7 @@ export class LoginPage implements OnInit {
  
    async onLogin() {
      this.isLoading = true;
+     
      if (this.loginForm.valid) {
        const { username, password } = this.loginForm.value;
  
@@ -118,13 +65,23 @@ export class LoginPage implements OnInit {
            }
          } else {
            console.log('Login failed: User validation failed');
-         }
+           this.isLoading = false;
+           this.msjErrorUser = true;
+          }
+          
+          setTimeout(() => {
+            this.msjErrorUser=false;
+            this.loginForm.reset();
+         }, 4000);
+          
        }, error => {
          console.error('Error during login process:', error);
          this.isLoading = false;
          
        });
      }
+     
+     
    }
  
    onAppPause() {
