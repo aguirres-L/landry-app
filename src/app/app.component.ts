@@ -18,7 +18,7 @@ export class AppComponent {
     { title: '', url: '/data', icon: 'server' },
   ];
   
-  selectedLanguage: string = 'en';
+  selectedLanguage: string = 'es';
   
   urlImgLogo = "../assets/logo-blue.png";
 

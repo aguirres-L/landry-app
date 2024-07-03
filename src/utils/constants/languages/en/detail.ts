@@ -3,7 +3,7 @@ export const detailEn={
     phone:'Phone',
     vehicle:'Vehicle',
     total:'Total Amount',
-    callClient:'Call Client',
+    callClient:'Contact the Client',
     deletClient:' Delet Client',
-    myWallet:' My Wallet'
+    myWallet:' Enviar Datos Bancarios'
 }

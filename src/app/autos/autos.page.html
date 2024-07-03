@@ -16,13 +16,14 @@
     <!-- <ion-label (click)="addCar()">Add Car</ion-label> -->
       <ion-label>{{stringAutoHTML.addButton}}</ion-label>
   </ion-item>
-  
+ 
+        
   <!-- Lista de autos -->
   <ion-list >
     <ion-item >
-      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.clients}} </ion-label>
-      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.phone}} </ion-label>
-      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.vehicle}} </ion-label>
+      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.clients}}  <ion-icon color="primary"  name="person-outline"></ion-icon> </ion-label>
+      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.phone}}  <ion-icon color="primary" name="call-outline"></ion-icon> </ion-label>
+      <ion-label  style="font-size: large;"> {{stringAutoHTML.clientsList.vehicle}} <ion-icon color="primary" name="car-sport-outline"></ion-icon> </ion-label>
       <!-- Mostrar más detalles del cliente según sea necesario -->
     </ion-item>
   </ion-list>

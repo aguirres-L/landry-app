@@ -29,9 +29,33 @@
         </ion-list>
 
       </ion-content>
+      
+      
+      <ion-footer>
+        <ion-toolbar>
+          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 10px;">
+            <img src="assets/my-logo2.png" alt="Logo" style="width: 50px; height: auto; margin-top: -15px; ">
+            <ion-title style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 15px; margin-bottom: 0;">
+              EmprendoTech
+            </ion-title>
+          </div>
+        </ion-toolbar>
+        <ion-toolbar>
+          <div style="text-align: center; padding: 5px;">
+            <p>&copy; 2024 EmprendoTech.</p>
+            <p>All rights reserved.</p>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
+      
+      
+      
+      
+      
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+  
   
   <!-- Mostrar el contenido principal siempre -->
   <ion-router-outlet id="main-content" *ngIf="!showMenu"></ion-router-outlet>

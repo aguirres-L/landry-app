@@ -33,7 +33,7 @@ export class FolderPage implements OnInit {
     
   }
   updateLanguageContent() {
-    this.stringFolderHTML = (this.languageStore === 'es') ? folderEs : folderEn;
+    this.stringFolderHTML = (this.languageStore === 'en') ? folderEs : folderEn;
     this.cdr.detectChanges();  // Forzar la detección de cambios para actualizar la vista
     console.log(this.stringFolderHTML, 'stringFolderHTML');
   }
