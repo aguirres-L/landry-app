@@ -1,44 +1,33 @@
 <ion-content [fullscreen]="true">
-    <ion-header [translucent]="true">
-      <ion-toolbar>
-       <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-        <ion-title size="large">  Registry</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title size="large">Registry</ion-title>
+    </ion-toolbar>
+  </ion-header>
   
-    
-    <ion-accordion-group style="margin-top: 2rem;" *ngFor="let client of clients" value="general">
-        <ion-accordion >
-      
-            <ion-item slot="header" >
-              
-                <div style="padding: .5rem;" class="">
-                    <ion-label>{{ client.name }}</ion-label>
-                    <ion-label>{{ client.carPlate }}</ion-label>
-                </div>
-            </ion-item>
-            
-            <div style="display: flex;flex-direction: column; margin: 1rem; " slot="content">
-                <ion-label>Phone: {{ client.phone }}</ion-label>
-                <ion-label> Vehiculo: {{ client.carPlate }}</ion-label>
-                <!-- service -->
-                 <!-- Lista de servicios de lavado -->
+  <ion-accordion-group *ngFor="let client of clients" value="general">
+    <ion-accordion>
+      <ion-item slot="header">
+        <div style="padding: .5rem;">
+          <ion-label>{{ client.name }}</ion-label>
+          <ion-label>{{ client.carPlate }}</ion-label>
+        </div>
+      </ion-item>
+      <div style="display: flex; flex-direction: column; margin: 1rem;" slot="content">
+        <ion-label>Phone: {{ client.phone }}</ion-label>
+        <ion-label>Vehiculo: {{ client.carPlate }}</ion-label>
+        <ion-label>Fecha: {{ client.creationDate }}</ion-label>
+        <!-- service -->
+        <!-- Lista de servicios de lavado -->
         <ion-item style="margin-top: 1rem;" *ngFor="let servicio of client.servicioLavado">
-          <ion-label>  {{ servicio.name }}</ion-label>
-          <ion-label> Precio: {{ servicio.price | currency:'USD':'symbol':'1.2-2' }}</ion-label>
+          <ion-label>{{ servicio.name }}</ion-label>
+          <ion-label>Precio: {{ servicio.price | currency:'USD':'symbol':'1.2-2' }}</ion-label>
         </ion-item>
-        
-        <p>Total de Servicios: {{ getTotal(client.servicioLavado) | currency:'USD':'symbol':'1.2-2'}}</p>
-        
-    <!--     <ion-label>Monto Total:</ion-label>
-        <ion-label>{{ getTotal() | currency:'USD':'symbol':'1.2-2' }}</ion-label>
-     -->
-     
-      <!-- Otros detalles del cliente -->
-     
-            </div>
-          </ion-accordion>
-    </ion-accordion-group>
-  </ion-content>
+        <p style=" text-align: center;">Total de Servicios: {{ getTotal(client.servicioLavado) | currency:'USD':'symbol':'1.2-2'}}</p>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>

@@ -67,6 +67,7 @@ export class TranslatorPage implements OnInit {
     // Aquí puedes implementar la lógica para guardar el cliente en localStorage
     // Guardamos los datos del nuevo cliente como un objeto JSON en localStorage
     this.newClient['id'] = uuidv4();
+    this.newClient['creationDate'] = new Date().toLocaleString();  // Asignamos la fecha de creación
     const clients = JSON.parse(localStorage.getItem('clients') || '[]');
     clients.push(this.newClient);
     console.log(this.newClient);
@@ -87,6 +88,7 @@ export class TranslatorPage implements OnInit {
       'carPlate': '',
       'servicioLavado': [], // Reiniciamos el array de servicios
       // Agrega más campos para otros servicios según sea necesario
+      'creationDate': ''
     };
   }
   
